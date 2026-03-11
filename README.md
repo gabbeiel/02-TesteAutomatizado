@@ -268,6 +268,8 @@ test.describe('Cadastro de Alunos', () => {                               // [2]
 
 > **💡 Conceito-chave — Auto-wait e Auto-retry:** O Playwright aguarda automaticamente que os elementos estejam prontos antes de interagir com eles. Além disso, as asserções com `expect()` tentam novamente até o timeout (padrão: 5 segundos). Isso elimina a necessidade de `sleep` ou `waitForTimeout` na maioria dos casos.
 
+> **⚠️ Nota:** Ao executar o teste acima com o site QS Acadêmico atual, ele poderá **falhar**. Isso é esperado — o site contém um defeito intencional que será investigado na Seção 6.5.
+
 ---
 
 ## 4. O Site de Testes — QS Acadêmico
@@ -391,6 +393,8 @@ testes-playwright/
 └── package-lock.json
 ```
 
+> **Nota:** A estrutura gerada pode variar conforme a versão do Playwright instalada. Versões mais recentes podem não criar a pasta `tests-examples/`. Isso não afeta a atividade.
+
 ### 5.5 Executando o Teste de Exemplo
 
 Para validar que tudo está funcionando:
@@ -501,13 +505,15 @@ test.describe('QS Acadêmico — Testes do Sistema de Notas', () => {
       await page.getByRole('button', { name: 'Cadastrar' }).click();
 
       // Média esperada: (8 + 6 + 10) / 3 = 8.00
-      const celulaMedia = page.locator('#tabela-alunos tbody tr td').nth(4);
+      const celulaMedia = page.locator('#tabela-alunos tbody tr').first().locator('td').nth(4);
       await expect(celulaMedia).toHaveText('8.00');
     });
 
   });
 });
 ```
+
+> **⚠️ Importante:** Ao executar estes testes, **alguns deles irão falhar**. Isso é esperado — o site contém um defeito intencional de implementação. A investigação e correção desse defeito será realizada na Parte 5 (Seção 6.5).
 
 **Tarefa para o aluno — testes adicionais a implementar:**
 
@@ -520,6 +526,9 @@ Complementar o arquivo acima adicionando os seguintes testes. Para cada um, o al
 5. **Teste de situação — Aprovado:** Cadastrar um aluno com média ≥ 7 e verificar que a situação exibida é "Aprovado".
 6. **Teste de situação — Reprovado:** Cadastrar um aluno com média < 5 e verificar que a situação exibida é "Reprovado".
 7. **Teste de múltiplos cadastros:** Cadastrar 3 alunos consecutivos e verificar que a tabela possui 3 linhas.
+8. **Teste de situação — Recuperação:** Cadastrar um aluno com média ≥ 5 e < 7 e verificar que a situação exibida é "Recuperação".
+
+> **💡 Dica:** Para maximizar a chance de detectar defeitos, escolha notas com valores bem diferentes entre si (por exemplo: 4, 8, 10 em vez de 7, 7, 7). Valores iguais podem mascarar problemas no cálculo da média.
 
 ### 6.3 Parte 3: Asserções e Boas Práticas (20 min)
 
@@ -548,6 +557,20 @@ await expect(page.getByText('João Silva')).not.toBeVisible();
 
 // Verificar conteúdo de um card de estatística
 await expect(page.locator('#stat-total')).toHaveText('5');
+```
+
+**Lidando com diálogos nativos (`alert`, `confirm`):**
+
+A funcionalidade "Limpar Tudo" utiliza `window.confirm()`. Para testá-la no Playwright, registre um handler **antes** de acionar o botão:
+
+```typescript
+// Aceitar o diálogo de confirmação (equivale a clicar "OK")
+page.on('dialog', async dialog => {
+  await dialog.accept();
+});
+await page.getByRole('button', { name: 'Limpar Tudo' }).click();
+
+// Para rejeitar (clicar "Cancelar"), use dialog.dismiss()
 ```
 
 **Boas práticas a destacar:**
@@ -639,7 +662,6 @@ Cada aluno (ou dupla) deverá entregar:
 | 3 | Screenshot ou PDF do relatório HTML do Playwright mostrando os resultados dos testes (**antes** e **depois** da correção do defeito) | Imagem ou PDF |
 | 4 | Registro do defeito encontrado preenchido conforme o modelo da seção 6.5 | PDF ou Markdown |
 | 5 | Commit no repositório com a **correção do defeito** no arquivo `docs/js/app.js` | Commit no Git |
-| 6 | Documento reflexivo (máx. 1 página) respondendo: *"Como os testes automatizados ajudaram a encontrar o defeito? Quais as vantagens e limitações que você percebeu ao automatizar testes com o Playwright?"* | PDF ou Markdown |
 
 ---
 
