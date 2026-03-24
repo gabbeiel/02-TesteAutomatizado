@@ -2,7 +2,7 @@
 
 **Aluno(a):** _Gabriel Barros Silva_
 **Dupla (se aplicável):** _Jade Yume Camargo Masuda_  
-**Data:** ___/___/______  
+**Data:** 24/03/2026  
 **Repositório (fork):** `https://github.com/gabbeiel/02-TesteAutomatizado`  
 **GitHub Pages:** `https://gabbeiel.github.io/02-TesteAutomatizado/`
 
@@ -95,30 +95,31 @@
 | **Título do defeito** | _Cálculo da média ignora a terceira nota_ |
 | **Severidade** | ☐ Alta  |
 | **Componente afetado** | _Função `calcularMedia` em `docs/js/app.js`_ |
-| **Passos para reproduzir** | 1. _1. Acessar o site._ |
-|                            | 2. _2. Cadastrar aluno com notas diferentes._ |
-|                            | 3. _3. Observar a média._|
+| **Passos para reproduzir** | 1. _Acessar o site._ |
+|                            | 2. _Cadastrar aluno com notas diferentes._ |
+|                            | 3. _Observar a média._|
 | **Resultado esperado** | _Média aritimética correta._ |
 | **Resultado obtido** | _Média aritimética incorreta._ |
 | **Teste(s) que revelaram o defeito** | _deve calcular a media antes das tres notas_ |
-| **Evidência visual** | _![Screenshot antes dos testes resolvidos](<print antes de resolver.png>)_ |
+| **Evidência visual** | _![Screenshot antes dos testes resolvidos](<printantesderesolver.png>)_ |
 
 ### Análise do Trace Viewer
 
 | Aspecto | Observação |
 |---------|------------|
-| **Em qual asserção o teste falhou?** | |
-| **Valor esperado** | |
-| **Valor obtido** | |
-| **Screenshot do momento da falha** | _(inserir)_ |
+| **Em qual asserção o teste falhou?** | _Expect "toHaveText"_ |
+| **Valor esperado** | _8.00_ |
+| **Valor obtido** | _7.00_ |
+| **Screenshot do momento da falha** |_![Screenshot antes dos testes resolvidos](<momentodafalha.png>)_ |
+|
 
 ### Exemplo de cálculo demonstrando o defeito
 
 | Notas inseridas | Média esperada (correta) | Média exibida (com defeito) | Diferença |
 |:---------------:|:------------------------:|:---------------------------:|:---------:|
-| N1=\_\_, N2=\_\_, N3=\_\_ | | | |
-| N1=\_\_, N2=\_\_, N3=\_\_ | | | |
-| N1=\_\_, N2=\_\_, N3=\_\_ | | | |
+| N1=8, N2=6, N3=10 | 8 | 7 | 1 |
+| N1=10, N2=10, N3=1 | 10 | 7 | 3 |
+| N1=6, N2=6, N3=6 | 6 | 6 | 6 |
 
 ---
 
@@ -127,11 +128,11 @@
 | Item | Detalhes |
 |------|----------|
 | **Arquivo corrigido** | `docs/js/app.js` |
-| **Função corrigida** | |
-| **Código original (com defeito)** | _(copiar o trecho com o bug)_ |
-| **Código corrigido** | _(copiar o trecho corrigido)_ |
-| **Hash do commit** | |
-| **Mensagem do commit** | |
+| **Função corrigida** | _calcularMedia_ |
+| **Código original (com defeito)** | _return (nota1 + nota2) / 2;_ |
+| **Código corrigido** | _return (nota1 + nota2+ nota3) / 3;_ |
+| **Hash do commit** | _sha256:cd0f5e69e111fc6b72afd7ee270e59b4025d9fa9f51b3a89c18046e8eceb3c15_ |
+| **Mensagem do commit** | _Update app.js_ |
 
 **Validação pós-correção:**
 
