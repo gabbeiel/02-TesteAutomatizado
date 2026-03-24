@@ -1,10 +1,10 @@
 # Documento de Entregáveis — Automação de Testes com Playwright
 
-**Aluno(a):** _(preencher)_  
-**Dupla (se aplicável):** _(preencher)_  
+**Aluno(a):** _Gabriel Barros Silva_
+**Dupla (se aplicável):** _Jade Yume Camargo Masuda_  
 **Data:** ___/___/______  
-**Repositório (fork):** `https://github.com/<seu-usuario>/02-TesteAutomatizado`  
-**GitHub Pages:** `https://<seu-usuario>.github.io/02-TesteAutomatizado/`
+**Repositório (fork):** `https://github.com/gabbeiel/02-TesteAutomatizado`  
+**GitHub Pages:** `https://gabbeiel.github.io/02-TesteAutomatizado/`
 
 ---
 
@@ -12,11 +12,11 @@
 
 | Item | Valor |
 |------|-------|
-| **URL do fork no GitHub** | `https://github.com/<seu-usuario>/02-TesteAutomatizado` |
-| **URL do site no GitHub Pages** | `https://<seu-usuario>.github.io/02-TesteAutomatizado/` |
+| **URL do fork no GitHub** | `https://github.com/gabbeiel/02-TesteAutomatizado` |
+| **URL do site no GitHub Pages** | `https://gabbeiel.github.io/02-TesteAutomatizado/` |
 | **Site está acessível e funcional?** | ☐ Sim / ☐ Não |
 
-**Evidência:** _(inserir screenshot do site QS Acadêmico funcionando no GitHub Pages)_
+**Evidência:** _![Imagem do site funcionando](<imagemsitefuncional.png>)_
 
 ---
 
@@ -35,7 +35,7 @@
 
 **Reflexão sobre o Codegen:** _(Que tipo de seletores o Codegen utilizou? São os mais indicados? Justifique.)_
 
-> _(escrever aqui)_
+> _O Codegen selecionou pelo nome dos elementos. São códigos "maiores", mas não notamos diferença na hora da execução_
 
 ### 2.2 Testes escritos manualmente
 
@@ -66,7 +66,7 @@
 
 ### 3.1 Relatório ANTES da correção do defeito
 
-**Evidência:** _(inserir screenshot ou PDF do relatório HTML mostrando testes que passaram e falharam)_
+**Evidência:** _![Screenshot antes dos testes resolvidos](<printantesderesolver.png>)_
 
 | Métrica | Valor |
 |---------|-------|
@@ -77,7 +77,7 @@
 
 ### 3.2 Relatório DEPOIS da correção do defeito
 
-**Evidência:** _(inserir screenshot ou PDF do relatório HTML mostrando todos os testes passando)_
+**Evidência:** _![Screenshot depois dos testes resolvidos](<printdepoisderesolver.png>)_
 
 | Métrica | Valor |
 |---------|-------|
@@ -92,17 +92,16 @@
 
 | Campo | Descrição |
 |-------|-----------|
-| **Título do defeito** | _(ex: "Cálculo da média ignora a terceira nota")_ |
-| **Severidade** | ☐ Crítica / ☐ Alta / ☐ Média / ☐ Baixa |
-| **Componente afetado** | _(ex: função `calcularMedia` em `docs/js/app.js`)_ |
-| **Passos para reproduzir** | 1. _(descrever passo a passo)_ |
-|                            | 2. |
-|                            | 3. |
-|                            | 4. |
-| **Resultado esperado** | _(o que deveria acontecer segundo a especificação)_ |
-| **Resultado obtido** | _(o que realmente acontece na aplicação)_ |
-| **Teste(s) que revelaram o defeito** | _(nome do(s) teste(s) que falharam)_ |
-| **Evidência visual** | _(inserir screenshot do teste falhando e/ou do Trace Viewer)_ |
+| **Título do defeito** | _Cálculo da média ignora a terceira nota_ |
+| **Severidade** | ☐ Alta  |
+| **Componente afetado** | _Função `calcularMedia` em `docs/js/app.js`_ |
+| **Passos para reproduzir** | 1. _1. Acessar o site._ |
+|                            | 2. _2. Cadastrar aluno com notas diferentes._ |
+|                            | 3. _3. Observar a média._|
+| **Resultado esperado** | _Média aritimética correta._ |
+| **Resultado obtido** | _Média aritimética incorreta._ |
+| **Teste(s) que revelaram o defeito** | _deve calcular a media antes das tres notas_ |
+| **Evidência visual** | _![Screenshot antes dos testes resolvidos](<print antes de resolver.png>)_ |
 
 ### Análise do Trace Viewer
 
